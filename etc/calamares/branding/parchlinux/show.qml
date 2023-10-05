@@ -1,218 +1,145 @@
-/* === This file is part of Calamares - <https://calamares.io> ===
- *
- *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
- *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *
- *   Calamares is Free Software: see the License-Identifier above.
- *
- */
-
 import QtQuick 2.0;
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+
 import calamares.slideshow 1.0;
 
 Presentation
 {
     id: presentation
 
-    function nextSlide() {
-        console.log("QML Component (default slideshow) Next slide");
-        presentation.goToNextSlide();
-    }
-
     Timer {
-        id: advanceTimer
-        interval: 10000
-        running: presentation.activatedInCalamares
+        interval: 5000
+        running: false
         repeat: true
-        onTriggered: nextSlide()
+        onTriggered: presentation.goToNextSlide()
+    }
+    
+    Image {
+        id: background
+        source: "calamares_background.svg"
+        anchors.fill: parent
+    }
+    
+    Image {
+        id: image
+        source: "calamares_install_image.svg"
+        width: 256
+        height: 256
+        fillMode: Image.PreserveAspectFit
+        anchors.left: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
     }
 
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
+    Slide {
+        
+        ColumnLayout {
+            anchors.leftMargin: 18
+            anchors.left: parent.left
+            anchors.right: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
 
-        Image
-        {
-            id: background1
-            source: "Slide1.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
+            Label {
+                Layout.fillWidth: true
+
+                text: qsTr("Welcome to the Parch Linux!")
+                font.pixelSize: 22
+                font.bold: true
+                color: "white"
+            }
+
+            Rectangle {
+                height: 3
+                width: 24
+                radius: 2
+
+                color: "white"
+            }
+            
+            Text {
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+
+                font.pixelSize: 12
+                color: "white"
+                text: qsTr("Yet another distro based on Arch!")
+                wrapMode: Text.WordWrap
+            }
         }
     }
 
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
+    Slide {
+        
+        ColumnLayout {
+            anchors.leftMargin: 18
+            anchors.left: parent.left
+            anchors.right: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
 
-        Image
-        {
-            id: background2
-            source: "Slide2.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
+            Label {
+                Layout.fillWidth: true
+
+                text: qsTr("Everything you need to get started.")
+                font.pixelSize: 22
+                font.bold: true
+                color: "white"
+            }
+
+            Rectangle {
+                height: 3
+                width: 24
+                radius: 2
+
+                color: "white"
+            }
+            
+            Text {
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+
+                font.pixelSize: 12
+                color: "white"
+                text: qsTr("Parch is a complete Operating System that ships the essential apps and services for the daily use: office applications, PDF reader, image editor")
+                wrapMode: Text.WordWrap
+            }
         }
     }
 
+    Slide {
+        
+        ColumnLayout {
+            anchors.leftMargin: 18
+            anchors.left: parent.left
+            anchors.right: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
 
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
+            Label {
+                Layout.fillWidth: true
 
-        Image
-        {
-            id: background3
-            source: "Slide3.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
+                text: qsTr("Explore a universe of apps with AUR.")
+                font.pixelSize: 22
+                font.bold: true
+                color: "white"
+            }
+
+            Rectangle {
+                height: 3
+                width: 24
+                radius: 2
+
+                color: "white"
+            }
+            
+            Text {
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+
+                font.pixelSize: 12
+                color: "white"
+                text: qsTr("Thanks for using Parch Linux")
+                wrapMode: Text.WordWrap
+            }
         }
     }
-
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
-
-        Image
-        {
-            id: background4
-            source: "Slide4.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
-        }
-    }
-
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
-
-        Image
-        {
-            id: background5
-            source: "Slide5.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
-        }
-    }
-
-    Slide
-    {
-        anchors.fill: parent
-        anchors.verticalCenterOffset: 0
-
-        Image
-        {
-            id: background6
-            source: "Slide6.jpg"
-            width: parent.width; height: parent.height
-            horizontalAlignment: Image.AlignCenter
-            verticalAlignment: Image.AlignTop
-            fillMode: Image.Stretch
-            anchors.fill: parent
-        }
-    }
-
-    //Slide
-    //{
-        //anchors.fill: parent
-        //anchors.verticalCenterOffset: 0
-
-        //Image
-        //{
-            //id: background7
-            //source: "Slide7.jpg"
-            //width: parent.width; height: parent.height
-            //horizontalAlignment: Image.AlignCenter
-            //verticalAlignment: Image.AlignTop
-            //fillMode: Image.Stretch
-            //anchors.fill: parent
-        //}
-    //}
-
-    //Slide
-    //{
-        //anchors.fill: parent
-        //anchors.verticalCenterOffset: 0
-
-        //Image
-        //{
-            //id: background8
-            //source: "Slide8.jpg"
-            //width: parent.width; height: parent.height
-            //horizontalAlignment: Image.AlignCenter
-            //verticalAlignment: Image.AlignTop
-            //fillMode: Image.Stretch
-            //anchors.fill: parent
-        //}
-    //}
-
-    //Slide
-    //{
-        //anchors.fill: parent
-        //anchors.verticalCenterOffset: 0
-
-        //Image
-        //{
-            //id: background9
-            //source: "Slide9.jpg"
-            //width: parent.width; height: parent.height
-            //horizontalAlignment: Image.AlignCenter
-            //verticalAlignment: Image.AlignTop
-            //fillMode: Image.Stretch
-            //anchors.fill: parent
-        //}
-    //}
-
-        //Slide
-    //{
-        //anchors.fill: parent
-        //anchors.verticalCenterOffset: 0
-
-        //Image
-        //{
-            //id: background10
-            //source: "Slide10.jpg"
-            //width: parent.width; height: parent.height
-            //horizontalAlignment: Image.AlignCenter
-            //verticalAlignment: Image.AlignTop
-            //fillMode: Image.Stretch
-            //anchors.fill: parent
-        //}
-    //}
-
-
-    // When this slideshow is loaded as a V1 slideshow, only
-    // activatedInCalamares is set, which starts the timer (see above).
-    //
-    // In V2, also the onActivate() and onLeave() methods are called.
-    // These example functions log a message (and re-start the slides
-    // from the first).
-    function onActivate() {
-        console.log("QML Component (default slideshow) activated");
-        presentation.currentSlide = 0;
-    }
-
-    function onLeave() {
-        console.log("QML Component (default slideshow) deactivated");
-    }
-
 }
