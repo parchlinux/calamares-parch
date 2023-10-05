@@ -1,5 +1,5 @@
 ---
-componentName:  nxos
+componentName:  parchlinux
 
 # This selects between different welcome texts. When false, uses
 # the traditional "Welcome to the %1 installer.", and when true,
@@ -13,17 +13,17 @@ welcomeStyleCalamares:   false
 welcomeExpandingLogo:   true
 
 strings:
-    productName:         Nitrux OS
-    shortProductName:    Nitrux
-    version:             3.0.1
-    shortVersion:        3.0.1
-    versionedName:       Nitrux OS 3.0.1 build.300923.fx
-    shortVersionedName:  Nitrux 3.0.1 build.300923.fx
-    bootloaderEntryName: Nitrux
-    productUrl:          https://nxos.org/
-    supportUrl:          https://github.com/Nitrux/nitrux-bug-tracker/
-    knownIssuesUrl:      https://nxos.org/known-issues/
-    releaseNotesUrl:     https://nxos.org/notes/
+    productName:         Parch Linux
+    shortProductName:    Parch
+    version:             Rolling
+    shortVersion:        Rolling
+    versionedName:       Parch Linux Rolling
+    shortVersionedName:  Parch Linux Rolling
+    bootloaderEntryName: Parch
+    productUrl:          https://parchlinux.ir
+    supportUrl:          https://github.com/parchlinux
+    knownIssuesUrl:      https://parchlinux.ir
+    releaseNotesUrl:     https://blog.parchlinux.ir
 
 images:
     productLogo:         "calamares_product_icon.svg"
