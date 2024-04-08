@@ -20,6 +20,7 @@ strings:
     shortVersion:        Rolling
     versionedName:       Parch Linux Rolling
     shortVersionedName:  ParchLinux
+    bootloaderEntryName: Parch
 
 images:
     productIcon:            "logo.png"
