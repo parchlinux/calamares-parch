@@ -20,4 +20,4 @@ if [[ -d "/run/archiso/copytoram" ]]; then
 	sudo sed -i -e "s|/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux|/usr/lib/modules/$KERNEL/vmlinuz|g" "$DIR"/modules/unpackfs.conf
 fi
 
-sudo -E calamares 
+QT_QPA_PLATFORM="xcb" QT_IM_MODULE="ibus" sudo -E calamares
