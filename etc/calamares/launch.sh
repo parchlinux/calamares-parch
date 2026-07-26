@@ -18,6 +18,7 @@ export XMODIFIERS="@im=${QT_IM_MODULE}"
 if [[ -d "/run/archiso/copytoram" ]]; then
 	sudo sed -i -e 's|/run/archiso/bootmnt/arch/x86_64/airootfs.sfs|/run/archiso/copytoram/airootfs.sfs|g' "$DIR"/modules/unpackfs.conf
 	sudo sed -i -e "s|/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux|/usr/lib/modules/$KERNEL/vmlinuz|g" "$DIR"/modules/unpackfs.conf
+	sudo sed -i -e "s|/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux|/usr/lib/modules/$KERNEL/vmlinuz|g" "$DIR"/modules/shellprocess_copy_kernel.conf
 fi
 
 QT_QPA_PLATFORM="xcb" QT_IM_MODULE="ibus" sudo -E calamares
