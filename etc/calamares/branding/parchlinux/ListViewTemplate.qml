@@ -17,7 +17,6 @@ Item
     property bool searchVisible: false
     property string searchPlaceholder: qsTr("Search...")
     property alias searchText: _searchField.text
-    signal searchTextChanged(string text)
 
     default property alias content : _content.data
 
@@ -41,7 +40,6 @@ Item
             activeFocusOnTab: true
             focusPolicy: Qt.StrongFocus
             selectByMouse: true
-            onTextChanged: control.searchTextChanged(text)
         }
 
         ListView
