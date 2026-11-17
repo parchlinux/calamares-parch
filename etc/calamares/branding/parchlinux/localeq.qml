@@ -22,6 +22,7 @@ ResponsiveBase
     onGoBack:
     {
         config.regionalZonesModel.filter = ""
+        config.regionalZonesModel.filterAllRegions = false
     }
 
     stackView.initialItem: ListViewTemplate
@@ -79,7 +80,24 @@ ResponsiveBase
 
             searchVisible: true
             searchPlaceholder: qsTr("Search timezone, city, or country...")
-            onSearchTextChanged: config.regionalZonesModel.filter = text
+
+            Binding {
+                target: config.regionalZonesModel
+                property: "filter"
+                value: _zonesListView.searchText ? _zonesListView.searchText.trim() : ""
+            }
+
+            Binding {
+                target: config.regionalZonesModel
+                property: "filterAllRegions"
+                value: Boolean(_zonesListView.searchText && _zonesListView.searchText.trim().length > 0)
+            }
+
+            onSearchTextChanged: {
+                var q = searchText ? searchText.trim() : ""
+                config.regionalZonesModel.filterAllRegions = (q.length > 0)
+                config.regionalZonesModel.filter = q
+            }
 
             model: config.regionalZonesModel
             currentIndex : -1
