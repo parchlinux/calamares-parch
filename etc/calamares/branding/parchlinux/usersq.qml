@@ -230,6 +230,7 @@ ResponsiveBase {
                     }
 
                     CheckBox {
+                        visible: config.displayAutoLogin
                         text: qsTr("Log in automatically without asking for the password")
                         checked: config.doAutoLogin
                         onCheckedChanged: config.setAutoLogin(checked)

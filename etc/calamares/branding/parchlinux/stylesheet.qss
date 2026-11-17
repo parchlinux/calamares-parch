@@ -34,10 +34,7 @@ QListWidget::item:alternate {
 }
 
 
-#debugButton {
-	font: bold 8px;
-	color: #292F34;
-}
+
 
 
 /* ########## TOOLTIP ########## */

@@ -38,5 +38,4 @@ slideshow:               "show.qml"
 slideshowAPI: 2
 
 uploadServer :
-    type :    "fiche"
-    url :     "http://termbin.com:9999"
+    type :    "none"
