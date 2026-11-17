@@ -33,7 +33,7 @@ ResponsiveBase {
 
             Rectangle {
                 Layout.fillWidth: true
-                implicitHeight: identityCol.implicitHeight
+                implicitHeight: identityCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
                 border.width: 1
@@ -41,7 +41,9 @@ ResponsiveBase {
 
                 ColumnLayout {
                     id: identityCol
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
                     anchors.margins: Kirigami.Units.largeSpacing
                     spacing: Kirigami.Units.smallSpacing
 
@@ -64,7 +66,7 @@ ResponsiveBase {
 
             Rectangle {
                 Layout.fillWidth: true
-                implicitHeight: loginCol.implicitHeight
+                implicitHeight: loginCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
                 border.width: 1
@@ -72,7 +74,9 @@ ResponsiveBase {
 
                 ColumnLayout {
                     id: loginCol
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
                     anchors.margins: Kirigami.Units.largeSpacing
                     spacing: Kirigami.Units.smallSpacing
 
@@ -122,7 +126,7 @@ ResponsiveBase {
 
             Rectangle {
                 Layout.fillWidth: true
-                implicitHeight: hostCol.implicitHeight
+                implicitHeight: hostCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
                 border.width: 1
@@ -130,7 +134,9 @@ ResponsiveBase {
 
                 ColumnLayout {
                     id: hostCol
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
                     anchors.margins: Kirigami.Units.largeSpacing
                     spacing: Kirigami.Units.smallSpacing
 
@@ -172,7 +178,7 @@ ResponsiveBase {
 
             Rectangle {
                 Layout.fillWidth: true
-                implicitHeight: passCol.implicitHeight
+                implicitHeight: passCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
                 border.width: 1
@@ -180,7 +186,9 @@ ResponsiveBase {
 
                 ColumnLayout {
                     id: passCol
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
                     anchors.margins: Kirigami.Units.largeSpacing
                     spacing: Kirigami.Units.smallSpacing
 
@@ -269,7 +277,7 @@ ResponsiveBase {
             Rectangle {
                 visible: config.writeRootPassword && !config.reuseUserPasswordForRoot
                 Layout.fillWidth: true
-                implicitHeight: rootCol.implicitHeight
+                implicitHeight: rootCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
                 border.width: 1
@@ -277,7 +285,9 @@ ResponsiveBase {
 
                 ColumnLayout {
                     id: rootCol
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
                     anchors.margins: Kirigami.Units.largeSpacing
                     spacing: Kirigami.Units.smallSpacing
 

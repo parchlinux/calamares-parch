@@ -19,6 +19,11 @@ ResponsiveBase
     property string currentRegion
     property string currentZone
 
+    onGoBack:
+    {
+        config.regionalZonesModel.filter = ""
+    }
+
     stackView.initialItem: ListViewTemplate
     {
         id: _regionListView
@@ -40,6 +45,7 @@ ResponsiveBase
                 _regionListView.currentIndex = index
                 control.currentRegion = model.name
                 config.regionalZonesModel.region = control.currentRegion
+                config.regionalZonesModel.filter = ""
                 control.stackView.push(_zonesListComponent)
             }
         }
@@ -47,9 +53,15 @@ ResponsiveBase
         Button
         {
             Layout.fillWidth: true
-            text: qsTr("Timezones")
+            text: qsTr("All Timezones")
             icon.name: "preferences-system-time"
-            onClicked: control.stackView.push(_zonesListComponent)
+            onClicked:
+            {
+                control.currentRegion = ""
+                config.regionalZonesModel.region = ""
+                config.regionalZonesModel.filter = ""
+                control.stackView.push(_zonesListComponent)
+            }
         }
     }
 
@@ -60,10 +72,14 @@ ResponsiveBase
         ListViewTemplate
         {
             id: _zonesListView
-            property string title: qsTr("Timezone")
+            property string title: control.currentRegion.length ? control.currentRegion : qsTr("Timezone")
             property string subtitle: qsTr("Select the city or zone that matches your location")
             property string message: ""
             property string icon : "preferences-system-time"
+
+            searchVisible: true
+            searchPlaceholder: qsTr("Search timezone, city, or country...")
+            onSearchTextChanged: config.regionalZonesModel.filter = text
 
             model: config.regionalZonesModel
             currentIndex : -1
@@ -72,15 +88,18 @@ ResponsiveBase
             {
                 id: _delegate
                 label1.text: model.name
+                label2.text: model.region ? model.region : ""
                 onClicked:
                 {
                     _zonesListView.currentIndex = index
-                    control.currentZone = model.name
+                    control.currentZone = model.key ? model.key : model.name
+                    if (model.region && model.region.length) {
+                        control.currentRegion = model.region
+                    }
 
                     _zonesListView.listView.positionViewAtIndex(index, ListView.Center)
 
                     config.setCurrentLocation(control.currentRegion, control.currentZone)
-
                 }
             }
         }
