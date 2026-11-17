@@ -348,6 +348,106 @@ ResponsiveBase {
                     : Kirigami.MessageType.Positive
                 text: config.rootPasswordMessage
             }
+
+            // Migration Assistant Card
+            Rectangle {
+                id: migrationCard
+                Layout.fillWidth: true
+                visible: config.hasMigrationProfiles
+                implicitHeight: migrationCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
+                radius: 14
+                color: cardColor
+                border.width: 1
+                border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.08)
+
+                ColumnLayout {
+                    id: migrationCol
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.margins: Kirigami.Units.largeSpacing
+                    spacing: Kirigami.Units.smallSpacing
+
+                    RowLayout {
+                        spacing: Kirigami.Units.smallSpacing
+                        Kirigami.Icon {
+                            source: "document-import"
+                            implicitWidth: 20
+                            implicitHeight: 20
+                        }
+                        Label {
+                            text: qsTr("Migration Assistant (Experimental)")
+                            font.weight: Font.DemiBold
+                        }
+                    }
+
+                    Label {
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                        opacity: 0.8
+                        text: qsTr("Existing user files detected. Select items you wish to import into your new Parch profile.")
+                    }
+
+                    Repeater {
+                        model: config.migrationProfiles
+                        delegate: ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: Kirigami.Units.smallSpacing
+
+                            Label {
+                                text: qsTr("From %1 (%2) on %3").arg(modelData.os).arg(modelData.user).arg(modelData.partition)
+                                font.weight: Font.Medium
+                            }
+
+                            CheckBox {
+                                id: migDocs
+                                text: qsTr("Import Documents")
+                                visible: modelData.hasDocuments
+                                checked: false
+                                onToggled: syncMigration(modelData)
+                            }
+                            CheckBox {
+                                id: migDownloads
+                                text: qsTr("Import Downloads")
+                                visible: modelData.hasDownloads
+                                checked: false
+                                onToggled: syncMigration(modelData)
+                            }
+                            CheckBox {
+                                id: migPictures
+                                text: qsTr("Import Pictures")
+                                visible: modelData.hasPictures
+                                checked: false
+                                onToggled: syncMigration(modelData)
+                            }
+                            CheckBox {
+                                id: migMusic
+                                text: qsTr("Import Music")
+                                visible: modelData.hasMusic
+                                checked: false
+                                onToggled: syncMigration(modelData)
+                            }
+                            CheckBox {
+                                id: migBookmarks
+                                text: qsTr("Import Browser Bookmarks")
+                                visible: modelData.hasBookmarks
+                                checked: false
+                                onToggled: syncMigration(modelData)
+                            }
+
+                            function syncMigration(data) {
+                                var items = [];
+                                if (migDocs.checked) items.push("documents");
+                                if (migDownloads.checked) items.push("downloads");
+                                if (migPictures.checked) items.push("pictures");
+                                if (migMusic.checked) items.push("music");
+                                if (migBookmarks.checked) items.push("bookmarks");
+                                config.setMigrationSelection(data.partition, data.user, data.os, items);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
