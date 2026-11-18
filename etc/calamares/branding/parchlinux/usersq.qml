@@ -21,23 +21,6 @@ ResponsiveBase {
     readonly property color fieldOk: "#F0FFF0"
     readonly property color fieldBad: "#EBCED1"
 
-    // The Migration Assistant can be switched off on the Parch Settings
-    // page; a missing `parchSettings` map keeps it enabled. GlobalStorage
-    // changes do not re-evaluate bindings, so refresh explicitly.
-    property bool migrationEnabled: true
-
-    function refreshMigrationEnabled() {
-        var settings = Global.value("parchSettings")
-        migrationEnabled = !settings || settings.migration !== false
-    }
-
-    Component.onCompleted: refreshMigrationEnabled()
-
-    Connections {
-        target: Global
-        function onChanged() { control.refreshMigrationEnabled() }
-    }
-
     stackView.initialItem: ScrollView {
         id: page
         focusPolicy: Qt.NoFocus
@@ -370,7 +353,7 @@ ResponsiveBase {
             Rectangle {
                 id: migrationCard
                 Layout.fillWidth: true
-                visible: config.hasMigrationProfiles && migrationEnabled
+                visible: config.hasMigrationProfiles
                 implicitHeight: migrationCol.implicitHeight + (Kirigami.Units.largeSpacing * 2)
                 radius: 14
                 color: cardColor
